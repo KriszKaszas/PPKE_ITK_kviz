@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PPKE_ITK_kviz_business_logic_prototype", "PPKE_ITK_kviz_business_logic_prototype\PPKE_ITK_kviz_business_logic_prototype.vcxproj", "{74BF679C-A73D-4FF0-AB1C-C5B324FD8870}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74BF679C-A73D-4FF0-AB1C-C5B324FD8870}.Debug|x64.ActiveCfg = Debug|x64
+		{74BF679C-A73D-4FF0-AB1C-C5B324FD8870}.Debug|x64.Build.0 = Debug|x64
+		{74BF679C-A73D-4FF0-AB1C-C5B324FD8870}.Debug|x86.ActiveCfg = Debug|Win32
+		{74BF679C-A73D-4FF0-AB1C-C5B324FD8870}.Debug|x86.Build.0 = Debug|Win32
+		{74BF679C-A73D-4FF0-AB1C-C5B324FD8870}.Release|x64.ActiveCfg = Release|x64
+		{74BF679C-A73D-4FF0-AB1C-C5B324FD8870}.Release|x64.Build.0 = Release|x64
+		{74BF679C-A73D-4FF0-AB1C-C5B324FD8870}.Release|x86.ActiveCfg = Release|Win32
+		{74BF679C-A73D-4FF0-AB1C-C5B324FD8870}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91F23E92-8406-432D-A96A-A9FB39D9966E}
+	EndGlobalSection
+EndGlobal
