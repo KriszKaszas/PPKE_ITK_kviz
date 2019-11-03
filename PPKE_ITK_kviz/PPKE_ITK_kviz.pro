@@ -21,19 +21,24 @@ SOURCES += \
     DataLayer/player.cpp \
     DataLayer/quiz.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    questioneditor.cpp
 
 HEADERS += \
     BusinessLogicLayer/gameengine.h \
     DataLayer/datamanager.h \
     DataLayer/player.h \
     DataLayer/quiz.h \
-    mainwindow.h
+    mainwindow.h \
+    questioneditor.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    questioneditor.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=
