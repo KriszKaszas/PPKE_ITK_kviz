@@ -1,9 +1,13 @@
 #ifndef DATAMANAGER_H
 #define DATAMANAGER_H
 
+#include "connection.h"
+
 #include "player.h"
 #include "quiz.h"
-#include <string>
+
+#include <QString>
+
 #include <map>
 #include <vector>
 
@@ -13,10 +17,7 @@ class DataManager
 {
 public:
     DataManager();
-    Player ReadPlayerDataFromFile();
-    Quiz ReadQuizFromFile();
-    void WritePlayerDataToFile();
-    void WriteQuizToFile();
+    Connection *connection;
 };
 
 #endif // DATAMANAGER_H

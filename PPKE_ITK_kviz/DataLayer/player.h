@@ -1,7 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <string>
+#include <QString>
+
 #include <vector>
 #include <map>
 
@@ -10,13 +11,13 @@ using namespace std;
 class Player
 {
 public:
-    Player(string name);
-    string GetName();
-    vector<map<string, int>> GetScoreBoard();
-    void SetScoreBoard(vector<map<string, int>> scoreBoard);
+    Player(QString name);
+    QString GetName();
+    vector<map<QString, int>> GetScoreBoard();
+    void SetScoreBoard(vector<map<QString, int>> scoreBoard);
 private:
-    string name;
-    vector<map<string, int>> scoreBoard;
+    QString name;
+    vector<map<QString, int>> scoreBoard;
 };
 
 #endif // PLAYER_H

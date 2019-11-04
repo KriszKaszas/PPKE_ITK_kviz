@@ -1,21 +1,21 @@
 #include "player.h"
 
-Player::Player(string name)
+Player::Player(QString name)
 {
     this->name = name;
 }
 
-string Player::GetName()
+QString Player::GetName()
 {
     return this->name;
 }
 
-void Player::SetScoreBoard(vector<map<string, int>> scoreBoard)
+void Player::SetScoreBoard(vector<map<QString, int>> scoreBoard)
 {
     this->scoreBoard = scoreBoard;
 }
 
-vector<map<string, int>> Player::GetScoreBoard()
+vector<map<QString, int>> Player::GetScoreBoard()
 {
     return this->scoreBoard;
 }

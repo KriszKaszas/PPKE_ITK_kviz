@@ -2,5 +2,6 @@
 
 DataManager::DataManager()
 {
-
+    connection = new Connection();
 }
+

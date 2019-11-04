@@ -17,6 +17,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     BusinessLogicLayer/gameengine.cpp \
+    BusinessLogicLayer/quizgame.cpp \
+    DataLayer/connection.cpp \
     DataLayer/datamanager.cpp \
     DataLayer/player.cpp \
     DataLayer/quiz.cpp \
@@ -26,6 +28,8 @@ SOURCES += \
 
 HEADERS += \
     BusinessLogicLayer/gameengine.h \
+    BusinessLogicLayer/quizgame.h \
+    DataLayer/connection.h \
     DataLayer/datamanager.h \
     DataLayer/player.h \
     DataLayer/quiz.h \

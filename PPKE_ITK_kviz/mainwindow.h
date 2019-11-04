@@ -2,6 +2,18 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
+#include "questioneditor.h"
+#include "BusinessLogicLayer/gameengine.h"
+#include "questioneditor.h"
+
+#include <QStringListModel>
+#include <QList>
+#include <QString>
+#include <QListWidgetItem>
+#include <QListWidget>
+
+#include <vector>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,5 +29,18 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QuestionEditor *editor;
+    GameEngine *engine;
+    void SetGameLabels();
+    void StartNewGame();
+private slots:
+    void on_startGame_clicked();
+    void on_nextQuestion_clicked();
+    void on_actionExit_triggered();
+    void on_actionStartNewGame_triggered();
+    void on_actionQuitCurrentGame_triggered();
+    void on_actionCreateNewQuiz_triggered();
+    void on_actionEditExistingQuiz_triggered();
+    void on_editQuestion_clicked();
 };
 #endif // MAINWINDOW_H

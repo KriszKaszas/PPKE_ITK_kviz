@@ -1,23 +1,23 @@
 #ifndef QUIZ_H
 #define QUIZ_H
 
-#include <string>
+#include <QString>
+
 #include <vector>
-#include <map>
 
 using namespace std;
 
 class Quiz
 {
 public:
-    Quiz();
-    void AddQuestion();
-    string GetTitle();
-    void SetTitle();
-    vector<map<string, vector<string>>> GetQuestions();
+    Quiz(QString title, vector<vector<QString>> questions);
+    void AddQuestion(vector<QString> question);
+    QString GetTitle();
+    void SetTitle(QString title);
+    vector<vector<QString>> GetQuestions();
 private:
-    string title;
-    vector<map<string, vector<string>>> questions;
+    QString title;
+    vector<vector<QString>> questions;
 
 };
 
