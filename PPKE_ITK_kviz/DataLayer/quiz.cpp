@@ -1,9 +1,7 @@
 #include "quiz.h"
 
-Quiz::Quiz(QString title, vector<vector<QString>> questions)
+Quiz::Quiz()
 {
-    this->title = title;
-    this->questions = questions;
 }
 
 void Quiz::AddQuestion(vector<QString> question)
@@ -24,4 +22,9 @@ void Quiz::SetTitle(QString title)
 vector<vector<QString>> Quiz::GetQuestions()
 {
     return questions;
+}
+
+void Quiz::SetQuestions(vector<vector<QString> > questions)
+{
+    this->questions = questions;
 }

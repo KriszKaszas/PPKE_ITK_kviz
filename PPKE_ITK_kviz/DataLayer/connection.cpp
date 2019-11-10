@@ -2,32 +2,23 @@
 
 Connection::Connection()
 {
-    SetTestQuiz();
+    currentQuiz = new Quiz();
+    CreateDefaultQuiz();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Quiz *Connection::GetTestQuiz()
+Quiz *Connection::GetQuiz()
 {
-    return testQuiz;
+    return currentQuiz;
 }
 
 
-void Connection::SetTestQuiz()
+void Connection::SetQuiz(QString title, vector<vector<QString>> questions)
+{
+    currentQuiz->SetTitle(title);
+    currentQuiz->SetQuestions(questions);
+}
+
+void Connection::CreateDefaultQuiz()
 {
     QString localTestQuizTitle = "Test Quiz";
     vector<vector<QString>> localTestQuizQuestions = {
@@ -37,5 +28,6 @@ void Connection::SetTestQuiz()
             {"What is C++?", "Something beyond our comprehension", "A lovely passtime", "The language of the gods", "Living hell", "C"}
         }
     };
-    testQuiz = new Quiz(localTestQuizTitle, localTestQuizQuestions);
+    currentQuiz->SetTitle(localTestQuizTitle);
+    currentQuiz->SetQuestions(localTestQuizQuestions);
 }

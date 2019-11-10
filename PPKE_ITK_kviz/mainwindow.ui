@@ -23,7 +23,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="homeScreen">
        <layout class="QGridLayout" name="gridLayout">
@@ -452,6 +452,26 @@
                   </property>
                  </widget>
                 </item>
+                <item>
+                 <widget class="QPushButton" name="addQuestion">
+                  <property name="minimumSize">
+                   <size>
+                    <width>120</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>MS Shell Dlg 2</family>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Új Kérdés</string>
+                  </property>
+                 </widget>
+                </item>
                </layout>
               </item>
               <item>
@@ -502,26 +522,6 @@
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_8">
               <item>
-               <widget class="QPushButton" name="addQuestion">
-                <property name="minimumSize">
-                 <size>
-                  <width>120</width>
-                  <height>25</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>MS Shell Dlg 2</family>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Új Kérdés</string>
-                </property>
-               </widget>
-              </item>
-              <item>
                <widget class="QPushButton" name="saveQuestion">
                 <property name="minimumSize">
                  <size>
@@ -538,6 +538,25 @@
                 </property>
                 <property name="text">
                  <string>Mentés</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="cancelButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>120</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Mégse</string>
                 </property>
                </widget>
               </item>
@@ -1013,7 +1032,7 @@
   </action>
   <action name="actionEditExistingQuiz">
    <property name="text">
-    <string>Meglévő kérdéssor szerkesztése</string>
+    <string>Jelenlegi kérdéssor szerkesztése</string>
    </property>
   </action>
   <action name="actionCreateNewQuiz">

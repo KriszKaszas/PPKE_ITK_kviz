@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    editor = new QuestionEditor(this);
     engine = new GameEngine();
     ui->selectedQuiz->setText(engine->quizGame->GetQuizTitle());
     SetGameLabels();
@@ -128,17 +129,36 @@ void MainWindow::on_actionCreateNewQuiz_triggered()
     ui->stackedWidget->setCurrentIndex(1);
 }
 
+void MainWindow::PopulateQuestionsList()
+{
+    ui->questionEditorTitle->clear();
+    ui->questionList->clear();
+    ui->questionEditorTitle->setText(engine->quizGame->GetQuizTitle());
+    for(int i=0; i<engine->quizGame->ReturnQuestionListLength(); i++)
+    {
+        ui->questionList->addItem(engine->quizGame->GetAllQuestions()[static_cast<unsigned long long int>(i)][0]);
+    }
+    ui->questionList->setCurrentRow(0);
+}
+
 void MainWindow::on_actionEditExistingQuiz_triggered()
 {
     engine->quizGame->ResetValues();
     ui->stackedWidget->setCurrentIndex(1);
-    ui->questionEditorTitle->setText(engine->quizGame->GetQuizTitle());
-    for(int i=0; i<engine->quizGame->ReturnQuestionListLength(); i++)
+    PopulateQuestionsList();
+}
+
+vector<QString> MainWindow::getSelectedListItem()
+{
+    vector<QString> selectedQuestion;
+    for(int i = 0; i < static_cast<int>(engine->quizGame->GetAllQuestions().size()); i++)
     {
-        ui->questionList->addItem(engine->quizGame->GetAllQuestions()[i][0]);
+        if(i == ui->questionList->currentRow())
+        {
+            selectedQuestion = engine->quizGame->GetAllQuestions()[static_cast<unsigned long long int>(i)];
+        }
     }
-        //TODO
-    //Fix so that its self filling
+    return selectedQuestion;
 }
 
 void MainWindow::on_editQuestion_clicked()
@@ -150,13 +170,39 @@ void MainWindow::on_editQuestion_clicked()
         QString itemText = index.data(Qt::DisplayRole).toString();
         for(int i=0; i<engine->quizGame->ReturnQuestionListLength(); i++)
         {
-            if(engine->quizGame->GetAllQuestions()[i][0] == itemText)
+            if(engine->quizGame->GetAllQuestions()[static_cast<unsigned long long int>(i)][0] == itemText)
             {
-                selectedQuestion = engine->quizGame->GetAllQuestions()[i];
+                selectedQuestion = engine->quizGame->GetAllQuestions()[static_cast<unsigned long long int>(i)];
             }
         }
-        editor = new QuestionEditor(this);
-        editor->
+        editor->populateCurrentQuestion(getSelectedListItem());
+        editor->populateInputFields();
         editor->show();
     }
+}
+
+vector<vector<QString>> MainWindow::DeleteQuestion()
+{
+    vector<vector<QString>> currentQuestions = engine->quizGame->GetAllQuestions();
+    for(int i = 0; i < static_cast<int>(engine->quizGame->GetAllQuestions().size()); i++)
+    {
+        if(i == ui->questionList->currentRow())
+        {
+            currentQuestions.erase(currentQuestions.begin()+i);
+        }
+    }
+    return currentQuestions;
+}
+
+void MainWindow::on_deleteQuestion_clicked()
+{
+    engine->datamanager->UpdateQuestions(engine->datamanager->GetQuiz()->GetTitle(), DeleteQuestion());
+    PopulateQuestionsList();
+}
+
+void MainWindow::on_cancelButton_clicked()
+{
+    ui->questionTitle->clear();
+    ui->questionList->clear();
+    ui->stackedWidget->setCurrentIndex(0);
 }

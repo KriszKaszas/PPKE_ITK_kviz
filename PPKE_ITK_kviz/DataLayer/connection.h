@@ -20,10 +20,11 @@ public:
     Quiz BrowseQuizFiles();
     void WritePlayerDataToFile();
     void WriteQuizToFile();
-    Quiz *GetTestQuiz();
-    void SetTestQuiz();
+    Quiz *GetQuiz();
+    void SetQuiz(QString title , vector<vector<QString>> questions);
+    void CreateDefaultQuiz();
 private:
-    Quiz *testQuiz;
+    Quiz *currentQuiz;
 };
 
 #endif // CONNECTION_H

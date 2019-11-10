@@ -17,6 +17,9 @@ class DataManager
 {
 public:
     DataManager();
+    Quiz *GetQuiz();
+    void UpdateQuestions(QString title, vector<vector<QString>> questions);
+private:
     Connection *connection;
 };
 

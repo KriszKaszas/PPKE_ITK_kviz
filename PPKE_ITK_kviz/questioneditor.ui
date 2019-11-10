@@ -47,10 +47,10 @@
            </widget>
           </item>
           <item>
-           <widget class="QPlainTextEdit" name="questionName">
-            <property name="maximumSize">
+           <widget class="QLineEdit" name="editQuestionName">
+            <property name="minimumSize">
              <size>
-              <width>16777215</width>
+              <width>0</width>
               <height>30</height>
              </size>
             </property>
@@ -58,12 +58,6 @@
              <font>
               <pointsize>16</pointsize>
              </font>
-            </property>
-            <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-            <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
            </widget>
           </item>
@@ -99,27 +93,6 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QPlainTextEdit" name="answerAInput">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>16</pointsize>
-             </font>
-            </property>
-            <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-            <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0">
            <widget class="QLabel" name="answerBLabel">
             <property name="font">
@@ -129,27 +102,6 @@
             </property>
             <property name="text">
              <string>B</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QTextEdit" name="answerBInput">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>16</pointsize>
-             </font>
-            </property>
-            <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-            <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
            </widget>
           </item>
@@ -165,27 +117,6 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
-           <widget class="QTextEdit" name="answerCInput">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>16</pointsize>
-             </font>
-            </property>
-            <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-            <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="0">
            <widget class="QLabel" name="answerDLabel">
             <property name="font">
@@ -198,11 +129,11 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
-           <widget class="QTextEdit" name="answerDInput">
-            <property name="maximumSize">
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="editA">
+            <property name="minimumSize">
              <size>
-              <width>16777215</width>
+              <width>0</width>
               <height>30</height>
              </size>
             </property>
@@ -211,11 +142,50 @@
               <pointsize>16</pointsize>
              </font>
             </property>
-            <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="editB">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
             </property>
-            <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
+            <property name="font">
+             <font>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="editC">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="editD">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>16</pointsize>
+             </font>
             </property>
            </widget>
           </item>

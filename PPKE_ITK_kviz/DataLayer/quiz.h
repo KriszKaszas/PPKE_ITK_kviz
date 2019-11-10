@@ -10,10 +10,11 @@ using namespace std;
 class Quiz
 {
 public:
-    Quiz(QString title, vector<vector<QString>> questions);
+    Quiz();
     void AddQuestion(vector<QString> question);
     QString GetTitle();
     void SetTitle(QString title);
+    void SetQuestions(vector<vector<QString>> questions);
     vector<vector<QString>> GetQuestions();
 private:
     QString title;

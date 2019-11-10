@@ -3,6 +3,6 @@
 GameEngine::GameEngine()
 {
     datamanager = new DataManager();
-    quizGame = new QuizGame(datamanager->connection->GetTestQuiz());
+    quizGame = new QuizGame(datamanager->GetQuiz());
 }
 
