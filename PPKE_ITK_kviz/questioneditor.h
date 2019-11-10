@@ -18,16 +18,24 @@ class QuestionEditor : public QMainWindow
     Q_OBJECT
 
 public:
+    Ui::QuestionEditor *ui;
     explicit QuestionEditor(QWidget *parent = nullptr);
     ~QuestionEditor();
-    void populateCurrentQuestion(vector<QString> questionData);
-    void populateInputFields();
+    void PopulateCurrentQuestion(vector<QString> questionData);
+    void PopulateInputFields();
     vector<QString> currentQuestion;
+    bool isNewQuestion;
+    void ClearQuestions();
+private:
+    void ClearFields();
+protected:
+    void closeEvent(QCloseEvent *event);
+signals:
+    void closing();
 private slots:
     void on_cancelButton_clicked();
-
-private:
-    Ui::QuestionEditor *ui;
+    void RetrieveFieldData();
+    void on_okButton_clicked();
 };
 
 #endif // QUESTIONEDITOR_H

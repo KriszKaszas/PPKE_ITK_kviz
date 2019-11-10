@@ -33,8 +33,10 @@ private:
     GameEngine *engine;
     void SetGameLabels();
     void StartNewGame();
-    vector<QString> getSelectedListItem();
+    vector<QString> GetSelectedListItem();
     vector<vector<QString>> DeleteQuestion();
+    vector<vector<QString>> UpdateQuestion();
+    vector<vector<QString>> AddQuestion();
     void PopulateQuestionsList();
 private slots:
     void on_startGame_clicked();
@@ -47,5 +49,7 @@ private slots:
     void on_editQuestion_clicked();
     void on_deleteQuestion_clicked();
     void on_cancelButton_clicked();
+    void SaveModifiedQuestion();
+    void on_addQuestion_clicked();
 };
 #endif // MAINWINDOW_H

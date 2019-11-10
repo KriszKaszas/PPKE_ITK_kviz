@@ -80,7 +80,7 @@ void QuizGame::Behavior(QString answer)
 
 bool QuizGame::IsGameOver()
 {
-    return currentQuestionIndex == quiz->GetQuestions().size();
+    return static_cast<unsigned long long int>(currentQuestionIndex) == quiz->GetQuestions().size();
 }
 
 void QuizGame::ResetValues()

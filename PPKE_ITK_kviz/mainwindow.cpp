@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     editor = new QuestionEditor(this);
+    connect(editor, SIGNAL(closing()), this, SLOT(SaveModifiedQuestion()));
     engine = new GameEngine();
     ui->selectedQuiz->setText(engine->quizGame->GetQuizTitle());
     SetGameLabels();
@@ -126,6 +127,8 @@ void MainWindow::on_actionQuitCurrentGame_triggered()
 void MainWindow::on_actionCreateNewQuiz_triggered()
 {
     engine->quizGame->ResetValues();
+    ui->questionEditorTitle->clear();
+    ui->questionList->clear();
     ui->stackedWidget->setCurrentIndex(1);
 }
 
@@ -148,7 +151,7 @@ void MainWindow::on_actionEditExistingQuiz_triggered()
     PopulateQuestionsList();
 }
 
-vector<QString> MainWindow::getSelectedListItem()
+vector<QString> MainWindow::GetSelectedListItem()
 {
     vector<QString> selectedQuestion;
     for(int i = 0; i < static_cast<int>(engine->quizGame->GetAllQuestions().size()); i++)
@@ -161,24 +164,51 @@ vector<QString> MainWindow::getSelectedListItem()
     return selectedQuestion;
 }
 
+vector<vector<QString>> MainWindow::UpdateQuestion()
+{
+    vector<vector<QString>> currentQuestions = engine->quizGame->GetAllQuestions();
+    for(int i = 0; i < static_cast<int>(engine->quizGame->GetAllQuestions().size()); i++)
+    {
+        if(i == ui->questionList->currentRow())
+        {
+            currentQuestions[static_cast<unsigned long long int>(i)] = editor->currentQuestion;
+        }
+    }
+    return currentQuestions;
+}
+
+vector<vector<QString>> MainWindow::AddQuestion()
+{
+    vector<vector<QString>> currentQuestions = engine->quizGame->GetAllQuestions();
+    currentQuestions.push_back(editor->currentQuestion);
+    return currentQuestions;
+}
+
+void MainWindow::SaveModifiedQuestion()
+{
+    if(!editor->isNewQuestion)
+    {
+        if(editor->currentQuestion[0] != "")
+        {
+            engine->datamanager->UpdateQuestions(ui->questionEditorTitle->text(), UpdateQuestion());
+        }
+    }
+    if(editor->isNewQuestion)
+    {
+        if(editor->currentQuestion[0] != "")
+        {
+            engine->datamanager->UpdateQuestions(engine->datamanager->GetQuiz()->GetTitle(), AddQuestion());
+        }
+    }
+    PopulateQuestionsList();
+}
+
 void MainWindow::on_editQuestion_clicked()
 {
-    if(ui->questionList->count())
-    {
-        vector<QString> selectedQuestion;
-        QModelIndex index = ui->questionList->currentIndex();
-        QString itemText = index.data(Qt::DisplayRole).toString();
-        for(int i=0; i<engine->quizGame->ReturnQuestionListLength(); i++)
-        {
-            if(engine->quizGame->GetAllQuestions()[static_cast<unsigned long long int>(i)][0] == itemText)
-            {
-                selectedQuestion = engine->quizGame->GetAllQuestions()[static_cast<unsigned long long int>(i)];
-            }
-        }
-        editor->populateCurrentQuestion(getSelectedListItem());
-        editor->populateInputFields();
-        editor->show();
-    }
+    editor->isNewQuestion = false;
+    editor->PopulateCurrentQuestion(GetSelectedListItem());
+    editor->PopulateInputFields();
+    editor->show();
 }
 
 vector<vector<QString>> MainWindow::DeleteQuestion()
@@ -196,7 +226,7 @@ vector<vector<QString>> MainWindow::DeleteQuestion()
 
 void MainWindow::on_deleteQuestion_clicked()
 {
-    engine->datamanager->UpdateQuestions(engine->datamanager->GetQuiz()->GetTitle(), DeleteQuestion());
+    engine->datamanager->UpdateQuestions(ui->questionEditorTitle->text(), DeleteQuestion());
     PopulateQuestionsList();
 }
 
@@ -205,4 +235,11 @@ void MainWindow::on_cancelButton_clicked()
     ui->questionTitle->clear();
     ui->questionList->clear();
     ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_addQuestion_clicked()
+{
+    editor->isNewQuestion = true;
+    editor->ClearQuestions();
+    editor->show();
 }
