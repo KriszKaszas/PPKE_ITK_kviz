@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     engine = new GameEngine();
     ui->selectedQuiz->setText(engine->quizGame->GetQuizTitle());
     SetGameLabels();
+    timer = new QTimer(this);
 }
 
 MainWindow::~MainWindow()
@@ -29,6 +30,7 @@ void MainWindow::SetGameLabels()
     ui->C->setText(engine->quizGame->GetNextQuizQuestion()[3]);
     ui->D->setText(engine->quizGame->GetNextQuizQuestion()[4]);
     ui->score->setText(engine->quizGame->GetScoreToQString());
+    ui->remainingTime->setText("59");
 }
 
 void MainWindow::StartNewGame()
@@ -37,10 +39,50 @@ void MainWindow::StartNewGame()
     {
         ui->stackedWidget->setCurrentIndex(2);
         SetGameLabels();
+        gametimer = 59;
+        connect(timer, SIGNAL(timeout()), this, SLOT(advance()));
+        timer->start(1000);
     }
     else
     {
         QMessageBox::warning(this, "HIBA!", "Kérjük, adjon meg egy játékosnevet!");
+    }
+}
+
+void MainWindow::advance()
+{
+    ui->remainingTime->setText(QString::number(gametimer));
+    if(gametimer != 0)
+    {
+        gametimer--;
+    }
+    if(gametimer == 0)
+    {
+        ui->remainingTime->setText(QString::number(gametimer));
+        engine->quizGame->Behavior("");
+        if(!engine->quizGame->IsGameOver())
+        {
+            gametimer = 59;
+            SetGameLabels();
+        }
+        else
+        {
+            ui->score->setText(engine->quizGame->GetScoreToQString());
+            QString gameOverMessage = "Az Ön pontszáma: " + engine->quizGame->GetScoreToQString();
+            QMessageBox::StandardButton reply =
+                QMessageBox::information(this, "Vége a játéknak!", gameOverMessage);
+            timer->stop();
+            disconnect(timer, SIGNAL(timeout()), this, SLOT());
+            if (reply == QMessageBox::Ok)
+            {
+                vector<QString> score = {ui->playerName->text(), ui->quizTitle->text(), engine->quizGame->GetScoreToQString()};
+
+                engine->SetScore(score);
+                engine->quizGame->ResetValues();
+                ui->stackedWidget->setCurrentIndex(0);
+            }
+
+        }
     }
 }
 
@@ -86,6 +128,7 @@ void MainWindow::on_nextQuestion_clicked()
         engine->quizGame->Behavior(AnswerValue);
         if(!engine->quizGame->IsGameOver())
         {
+            gametimer = 59;
             SetGameLabels();
         }
         else
@@ -94,7 +137,8 @@ void MainWindow::on_nextQuestion_clicked()
             QString gameOverMessage = "Az Ön pontszáma: " + engine->quizGame->GetScoreToQString();
             QMessageBox::StandardButton reply =
                 QMessageBox::information(this, "Vége a játéknak!", gameOverMessage);
-
+            timer->stop();
+            disconnect(timer, SIGNAL(timeout()), this, SLOT());
             if (reply == QMessageBox::Ok)
             {
                 vector<QString> score = {ui->playerName->text(), ui->quizTitle->text(), engine->quizGame->GetScoreToQString()};

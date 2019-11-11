@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QTimer>
 #include <QFileDialog>
 #include "questioneditor.h"
 #include "BusinessLogicLayer/gameengine.h"
@@ -27,6 +28,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QTimer *timer;
 
 private:
     Ui::MainWindow *ui;
@@ -39,6 +41,7 @@ private:
     vector<vector<QString>> UpdateQuestion();
     vector<vector<QString>> AddQuestion();
     void PopulateQuestionsList();
+    int gametimer;
 private slots:
     void on_startGame_clicked();
     void on_nextQuestion_clicked();
@@ -55,5 +58,6 @@ private slots:
     void on_saveQuestion_clicked();
     void on_actionBrowseFileInDirectory_triggered();
     void on_actionChooseAppDefaultQuiz_triggered();
+    void advance();
 };
 #endif // MAINWINDOW_H
