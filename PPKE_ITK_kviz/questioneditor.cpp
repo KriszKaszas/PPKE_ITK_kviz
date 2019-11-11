@@ -87,7 +87,6 @@ void QuestionEditor::on_cancelButton_clicked()
 void QuestionEditor::on_okButton_clicked()
 {
     RetrieveFieldData();
-    ClearFields();
     this->close();
 }
 
