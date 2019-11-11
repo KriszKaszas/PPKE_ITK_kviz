@@ -288,6 +288,7 @@ void MainWindow::on_addQuestion_clicked()
 {
     editor->isNewQuestion = true;
     editor->ClearQuestions();
+    editor->ClearFields();
     editor->show();
 }
 
@@ -324,4 +325,14 @@ void MainWindow::on_actionChooseAppDefaultQuiz_triggered()
        ui->selectedQuiz->setText(engine->quizGame->GetQuizTitle());
        SetGameLabels();
     }
+}
+
+void MainWindow::on_actionGameInfo_triggered()
+{
+    QMessageBox::information(this, "Játékinfó", "Kvízjáték\n\nPPKE-ITK Molekuláris Bionika Szak\n\nFelföldi Anna TM\n\n 2019 All Rights Reserved");
+}
+
+void MainWindow::on_actionHelp_triggered()
+{
+    QMessageBox::information(this, "Súgó", "BETÖLTÉS:\nÚj Kvizek feltöltésénél fokozottan kell ügyelni az adatfájl formátumára.\nReferenciaként használja a programhoz tartozó adatfájlokat (.txt).\nFokozottan ügyeljen a sorok elején található jelölőkre.\n\nFUNKCIÓK:\nA játék teljes mentés, módosítás és feltöltés funkciócsomaggal rendelkezik.\n\nJÁTÉK:\nA kvízek kitöltése időkorlátos.\n\nFIGYELEM:\nA termék használata előtt semmilyen tudatmódosító szer\nhasználatát nem ajánljuk.");
 }

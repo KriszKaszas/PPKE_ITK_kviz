@@ -59,5 +59,7 @@ private slots:
     void on_actionBrowseFileInDirectory_triggered();
     void on_actionChooseAppDefaultQuiz_triggered();
     void advance();
+    void on_actionGameInfo_triggered();
+    void on_actionHelp_triggered();
 };
 #endif // MAINWINDOW_H

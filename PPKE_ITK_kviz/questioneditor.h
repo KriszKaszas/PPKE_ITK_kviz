@@ -26,7 +26,6 @@ public:
     vector<QString> currentQuestion;
     bool isNewQuestion;
     void ClearQuestions();
-private:
     void ClearFields();
 protected:
     void closeEvent(QCloseEvent *event);

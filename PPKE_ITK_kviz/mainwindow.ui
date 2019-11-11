@@ -996,9 +996,9 @@
     <property name="title">
      <string>Infó</string>
     </property>
-    <addaction name="actionJ_t_kinf"/>
+    <addaction name="actionGameInfo"/>
     <addaction name="separator"/>
-    <addaction name="actionSeg_ts_g"/>
+    <addaction name="actionHelp"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuJ_t_k"/>
@@ -1040,12 +1040,12 @@
     <string>Új kérdéssor létrehozása</string>
    </property>
   </action>
-  <action name="actionJ_t_kinf">
+  <action name="actionGameInfo">
    <property name="text">
     <string>Játékinfó</string>
    </property>
   </action>
-  <action name="actionSeg_ts_g">
+  <action name="actionHelp">
    <property name="text">
     <string>Segítség</string>
    </property>
