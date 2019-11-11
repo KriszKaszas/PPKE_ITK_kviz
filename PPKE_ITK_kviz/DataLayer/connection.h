@@ -23,13 +23,16 @@ public:
 
     void SetUpLoadedQuiz();
     void SaveQuiz();
-    Quiz BrowseQuizFiles();
+    void SetFilePath(QString filepath);
     void LoadQuizFromFile();
     Quiz *GetQuiz();
     void SetQuiz(QString title , vector<vector<QString>> questions);
     void CreateAppDefaultQuiz();
-private:
     void ReadDataFromLocalFile();
+    void SetScore(vector<QString> score);
+
+private:
+    QString filepath;
     QString ParseQuizTitle();
     vector<vector<QString>> ParseQuizQuestions();
     void ReverseParseQuiz();
@@ -37,6 +40,7 @@ private:
     void WriteDataToLocalFile();
     Quiz *currentQuiz;
     vector<QString> rawQuiz;
+    vector<QString> score;
 };
 
 #endif // CONNECTION_H

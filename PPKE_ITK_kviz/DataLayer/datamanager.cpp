@@ -21,3 +21,19 @@ void DataManager::SaveQuiz()
 {
     connection->SaveQuiz();
 }
+
+void DataManager::SetFilePath(QString filepath)
+{
+    connection->SetFilePath(filepath);
+}
+
+void DataManager::LoadDataFromLocalFile()
+{
+    connection->ReadDataFromLocalFile();
+    connection->SetUpLoadedQuiz();
+}
+
+void DataManager::SetScore(vector<QString> score)
+{
+    connection->SetScore(score);
+}

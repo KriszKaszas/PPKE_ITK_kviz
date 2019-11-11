@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QFileDialog>
 #include "questioneditor.h"
 #include "BusinessLogicLayer/gameengine.h"
 #include "questioneditor.h"
@@ -52,5 +53,7 @@ private slots:
     void SaveModifiedQuestion();
     void on_addQuestion_clicked();
     void on_saveQuestion_clicked();
+    void on_actionBrowseFileInDirectory_triggered();
+    void on_actionChooseAppDefaultQuiz_triggered();
 };
 #endif // MAINWINDOW_H

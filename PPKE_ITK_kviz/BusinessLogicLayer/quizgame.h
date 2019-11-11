@@ -20,6 +20,7 @@ public:
     void ResetValues();
     int ReturnQuestionListLength();
     vector<vector<QString>> GetAllQuestions();
+    void SetQuiz(Quiz *newQuiz);
 private:
     Quiz *quiz;
     int currentQuestionIndex;

@@ -4,6 +4,8 @@ Connection::Connection()
 {
     currentQuiz = new Quiz();
     CreateAppDefaultQuiz();
+    SetFilePath("./AppDefaultQuizes/quiz.txt");
+    ReadDataFromLocalFile();
 }
 
 Quiz *Connection::GetQuiz()
@@ -20,7 +22,8 @@ void Connection::SetQuiz(QString title, vector<vector<QString>> questions)
 
 void Connection::ReadDataFromLocalFile()
 {
-    QFile quizFile("./AppDefaultQuizes/quiz.txt");
+    rawQuiz.clear();
+    QFile quizFile(filepath);
     if(!quizFile.open(QFile::ReadOnly))
     {
         cout<<"problem";
@@ -59,19 +62,16 @@ vector<vector<QString>> Connection::ParseQuizQuestions()
 
 void Connection::SetUpLoadedQuiz()
 {
-    ReadDataFromLocalFile();
     currentQuiz->SetTitle(ParseQuizTitle());
     currentQuiz->SetQuestions(ParseQuizQuestions());
 }
 
 void Connection::CreateAppDefaultQuiz()
 {
-    QString localTestQuizTitle = "Test Quiz";
+    QString localTestQuizTitle = "Töltsön be egy kvízfájlt!";
     vector<vector<QString>> localTestQuizQuestions =
         {
-            {"Can I Code?", "yes", "no", "maybe", "dunno", "A"},
-            {"What am I doing?", "dunno", "bullshit", "something sensible", "coding like a god", "D"},
-            {"What is C++?", "Something beyond our comprehension", "A lovely passtime", "The language of the gods", "Living hell", "C"}
+            {"Töltsön be egy kvízfájlt!", "Töltsön be egy kvízfájlt!", "Töltsön be egy kvízfájlt!", "Töltsön be egy kvízfájlt!", "Töltsön be egy kvízfájlt!", "A"},
         };
     currentQuiz->SetTitle(localTestQuizTitle);
     currentQuiz->SetQuestions(localTestQuizQuestions);
@@ -100,7 +100,7 @@ void Connection::ReverseParseQuiz()
 
 void Connection::WriteDataToLocalFile()
 {
-    QFile savedQuiz("./AppDefaultQuizes/quiz.txt");
+    QFile savedQuiz(filepath);
     if(!savedQuiz.open(QFile::WriteOnly))
     {
         cout<<"problem";
@@ -113,4 +113,32 @@ void Connection::WriteDataToLocalFile()
     }
     savedQuiz.flush();
     savedQuiz.close();
+}
+
+void Connection::SetFilePath(QString filepath = "./AppDefaultQuizes")
+{
+    this->filepath = filepath;
+}
+
+void Connection::SetScore(vector<QString> score)
+{
+    this->score = score;
+    WritePlayerDataToFile();
+}
+
+void Connection::WritePlayerDataToFile()
+{
+    QFile scoreboard("./ScoreBoard/ScoreBoard.txt");
+    if(!scoreboard.open(QFile::WriteOnly))
+    {
+        cout<<"problem";
+    }
+    QTextStream out(&scoreboard);
+    out.setCodec("UTF-8");
+    for(QString elem : score)
+    {
+        out << elem << " ; ";
+    }
+    scoreboard.flush();
+    scoreboard.close();
 }

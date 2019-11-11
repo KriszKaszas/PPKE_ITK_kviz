@@ -973,8 +973,8 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionBe_p_tett_k_rd_ssor_kiv_laszt_sa"/>
-    <addaction name="actionK_rd_ssor_tall_z_sa_f_jlb_l"/>
+    <addaction name="actionChooseAppDefaultQuiz"/>
+    <addaction name="actionBrowseFileInDirectory"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -1005,12 +1005,12 @@
    <addaction name="menuSzerkeszt"/>
    <addaction name="menuInf"/>
   </widget>
-  <action name="actionBe_p_tett_k_rd_ssor_kiv_laszt_sa">
+  <action name="actionChooseAppDefaultQuiz">
    <property name="text">
     <string>Beépített kérdéssor kiválasztása</string>
    </property>
   </action>
-  <action name="actionK_rd_ssor_tall_z_sa_f_jlb_l">
+  <action name="actionBrowseFileInDirectory">
    <property name="text">
     <string>Kérdéssor tallózása fájlból</string>
    </property>

@@ -20,6 +20,9 @@ public:
     Quiz *GetQuiz();
     void UpdateQuestions(QString title, vector<vector<QString>> questions);
     void SaveQuiz();
+    void SetFilePath(QString filepath);
+    void LoadDataFromLocalFile();
+    void SetScore(vector<QString> score);
 private:
     Connection *connection;
 };

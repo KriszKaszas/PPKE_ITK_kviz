@@ -7,38 +7,10 @@ QuizGame::QuizGame(Quiz *quiz)
     score = 0;
 }
 
-//Adatok Kinyerése
-//QString QuizGame::GetQuizTitle()
-//{
-//    return quiz->GetTitle();
-//}
-
-//QString QuizGame::GetNextQuizQuestion(int currentQuestionIndex)
-//{
-//    map<QString, vector<QString>> question = quiz->GetQuestions()[static_cast<unsigned long long int>(currentQuestionIndex)];
-//    if(!question.empty())
-//    {
-//        return question.begin()->first;
-//    }
-//    else
-//    {
-//        return "Ehhez a kérdéshez nem található megnevezés";
-//    }
-//}
-
-//vector<QString> QuizGame::GetNextQuizAnswers()
-//{
-//    vector<QString> error = {"Ehhez a kérdéshez nem található válaszlehetőség"};
-//    map<QString, vector<QString>> question = quiz->GetQuestions()[static_cast<unsigned long long int>(currentQuestionIndex)];
-//    if(!question.empty())
-//    {
-//        return question.begin()->second;
-//    }
-//    else
-//    {
-//        return error;
-//    }
-//}
+void QuizGame::SetQuiz(Quiz *newQuiz)
+{
+    quiz = newQuiz;
+}
 
 QString QuizGame::GetQuizTitle()
 {

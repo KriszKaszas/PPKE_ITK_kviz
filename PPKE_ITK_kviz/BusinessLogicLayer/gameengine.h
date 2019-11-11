@@ -13,6 +13,8 @@ public:
     GameEngine();
     DataManager *datamanager;
     QuizGame *quizGame;
+    void setQuiz(Quiz *quiz);
+    void SetScore(vector<QString> score);
 };
 
 #endif // GAMEENGINE_H

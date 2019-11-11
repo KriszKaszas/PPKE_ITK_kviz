@@ -60,28 +60,28 @@ void MainWindow::on_nextQuestion_clicked()
             AnswerValue = "A";
             ui->A->setAutoExclusive(false);
             ui->A->setChecked(false);
-            ui->A->setAutoExclusive(false);
+            ui->A->setAutoExclusive(true);
         }
         if(ui->B->isChecked())
         {
             AnswerValue = "B";
             ui->B->setAutoExclusive(false);
             ui->B->setChecked(false);
-            ui->B->setAutoExclusive(false);
+            ui->B->setAutoExclusive(true);
         }
         if(ui->C->isChecked())
         {
             AnswerValue = "C";
             ui->C->setAutoExclusive(false);
             ui->C->setChecked(false);
-            ui->C->setAutoExclusive(false);
+            ui->C->setAutoExclusive(true);
         }
         if(ui->D->isChecked())
         {
             AnswerValue = "D";
             ui->D->setAutoExclusive(false);
             ui->D->setChecked(false);
-            ui->D->setAutoExclusive(false);
+            ui->D->setAutoExclusive(true);
         }
         engine->quizGame->Behavior(AnswerValue);
         if(!engine->quizGame->IsGameOver())
@@ -94,8 +94,11 @@ void MainWindow::on_nextQuestion_clicked()
             QString gameOverMessage = "Az Ön pontszáma: " + engine->quizGame->GetScoreToQString();
             QMessageBox::StandardButton reply =
                 QMessageBox::information(this, "Vége a játéknak!", gameOverMessage);
+
             if (reply == QMessageBox::Ok)
             {
+                vector<QString> score = {ui->playerName->text(), ui->quizTitle->text(), engine->quizGame->GetScoreToQString()};
+                engine->SetScore(score);
                 engine->quizGame->ResetValues();
                 ui->stackedWidget->setCurrentIndex(0);
             }
@@ -247,4 +250,34 @@ void MainWindow::on_addQuestion_clicked()
 void MainWindow::on_saveQuestion_clicked()
 {
     engine->datamanager->SaveQuiz();
+}
+
+void MainWindow::on_actionBrowseFileInDirectory_triggered()
+{
+    QString filter = "Txt files (*.txt) ;; All file (.*)";
+    QString filename = QFileDialog::getOpenFileName(this, "Válaszd ki a telefonkönyvet!", "C:/", filter);
+
+    if (filename != "")
+    {
+       engine->datamanager->SetFilePath(filename);
+       engine->datamanager->LoadDataFromLocalFile();
+       engine->setQuiz(engine->datamanager->GetQuiz());
+       ui->selectedQuiz->setText(engine->quizGame->GetQuizTitle());
+       SetGameLabels();
+    }
+}
+
+void MainWindow::on_actionChooseAppDefaultQuiz_triggered()
+{
+    QString filter = "Txt files (*.txt) ;; All file (.*)";
+    QString filename = QFileDialog::getOpenFileName(this, "Válaszd ki a telefonkönyvet!", "./AppDefaultQuizes/quiz.txt", filter);
+
+    if (filename != "")
+    {
+       engine->datamanager->SetFilePath(filename);
+       engine->datamanager->LoadDataFromLocalFile();
+       engine->setQuiz(engine->datamanager->GetQuiz());
+       ui->selectedQuiz->setText(engine->quizGame->GetQuizTitle());
+       SetGameLabels();
+    }
 }
