@@ -20,7 +20,6 @@ void Connection::SetQuiz(QString title, vector<vector<QString>> questions)
 
 void Connection::ReadDataFromLocalFile()
 {
-
     QFile quizFile("./AppDefaultQuizes/quiz.txt");
     if(!quizFile.open(QFile::ReadOnly))
     {
@@ -31,7 +30,8 @@ void Connection::ReadDataFromLocalFile()
     QString line;
     while(in.readLineInto(&line) && line != "")
     {
-        rawQuiz.push_back(line);
+        QStringList splitLine = line.split(":");
+        rawQuiz.push_back(splitLine[1]);
     }
     quizFile.close();
 }
