@@ -19,6 +19,7 @@ public:
     DataManager();
     Quiz *GetQuiz();
     void UpdateQuestions(QString title, vector<vector<QString>> questions);
+    void SaveQuiz();
 private:
     Connection *connection;
 };

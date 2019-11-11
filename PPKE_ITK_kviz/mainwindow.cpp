@@ -243,3 +243,8 @@ void MainWindow::on_addQuestion_clicked()
     editor->ClearQuestions();
     editor->show();
 }
+
+void MainWindow::on_saveQuestion_clicked()
+{
+    engine->datamanager->SaveQuiz();
+}

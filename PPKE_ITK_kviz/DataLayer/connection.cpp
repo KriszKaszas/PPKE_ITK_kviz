@@ -76,3 +76,41 @@ void Connection::CreateAppDefaultQuiz()
     currentQuiz->SetTitle(localTestQuizTitle);
     currentQuiz->SetQuestions(localTestQuizQuestions);
 }
+
+void Connection::SaveQuiz()
+{
+    ReverseParseQuiz();
+    WriteDataToLocalFile();
+}
+
+void Connection::ReverseParseQuiz()
+{
+    rawQuiz.clear();
+    rawQuiz.push_back("Name:" + currentQuiz->GetTitle());
+    for(vector<QString> question : currentQuiz->GetQuestions())
+    {
+        rawQuiz.push_back("Q:" + question[0]);
+        rawQuiz.push_back("A:" + question[1]);
+        rawQuiz.push_back("B:" + question[2]);
+        rawQuiz.push_back("C:" + question[3]);
+        rawQuiz.push_back("D:" + question[4]);
+        rawQuiz.push_back("Ans:" + question[5]);
+    }
+}
+
+void Connection::WriteDataToLocalFile()
+{
+    QFile savedQuiz("./AppDefaultQuizes/quiz.txt");
+    if(!savedQuiz.open(QFile::WriteOnly))
+    {
+        cout<<"problem";
+    }
+    QTextStream out(&savedQuiz);
+    out.setCodec("UTF-8");
+    for(QString elem : rawQuiz)
+    {
+        out << elem << "\n";
+    }
+    savedQuiz.flush();
+    savedQuiz.close();
+}

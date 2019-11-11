@@ -16,3 +16,8 @@ void DataManager::UpdateQuestions(QString title, vector<vector<QString>> questio
 {
     connection->SetQuiz(title, questions);
 }
+
+void DataManager::SaveQuiz()
+{
+    connection->SaveQuiz();
+}

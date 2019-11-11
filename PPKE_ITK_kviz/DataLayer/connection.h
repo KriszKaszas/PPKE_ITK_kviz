@@ -20,18 +20,21 @@ class Connection
 public:
     Connection();
     Player ReadPlayerDataFromFile();
-    void ReadDataFromLocalFile();
-    QString ParseQuizTitle();
-    vector<vector<QString>> ParseQuizQuestions();
+
     void SetUpLoadedQuiz();
+    void SaveQuiz();
     Quiz BrowseQuizFiles();
     void LoadQuizFromFile();
-    void WritePlayerDataToFile();
-    void WriteQuizToFile();
     Quiz *GetQuiz();
     void SetQuiz(QString title , vector<vector<QString>> questions);
     void CreateAppDefaultQuiz();
 private:
+    void ReadDataFromLocalFile();
+    QString ParseQuizTitle();
+    vector<vector<QString>> ParseQuizQuestions();
+    void ReverseParseQuiz();
+    void WritePlayerDataToFile();
+    void WriteDataToLocalFile();
     Quiz *currentQuiz;
     vector<QString> rawQuiz;
 };

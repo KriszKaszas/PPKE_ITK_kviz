@@ -51,5 +51,6 @@ private slots:
     void on_cancelButton_clicked();
     void SaveModifiedQuestion();
     void on_addQuestion_clicked();
+    void on_saveQuestion_clicked();
 };
 #endif // MAINWINDOW_H
