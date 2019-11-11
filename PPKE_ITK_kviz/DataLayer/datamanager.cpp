@@ -3,7 +3,8 @@
 DataManager::DataManager()
 {
     connection = new Connection();
-    connection->CreateDefaultQuiz();
+    connection->CreateAppDefaultQuiz();
+    connection->SetUpLoadedQuiz();
 }
 
 Quiz *DataManager::GetQuiz()

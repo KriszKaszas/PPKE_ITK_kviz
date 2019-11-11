@@ -3,7 +3,7 @@
 Connection::Connection()
 {
     currentQuiz = new Quiz();
-    CreateDefaultQuiz();
+    CreateAppDefaultQuiz();
 }
 
 Quiz *Connection::GetQuiz()
@@ -18,7 +18,53 @@ void Connection::SetQuiz(QString title, vector<vector<QString>> questions)
     currentQuiz->SetQuestions(questions);
 }
 
-void Connection::CreateDefaultQuiz()
+void Connection::ReadDataFromLocalFile()
+{
+
+    QFile quizFile("./AppDefaultQuizes/quiz.txt");
+    if(!quizFile.open(QFile::ReadOnly))
+    {
+        cout<<"problem";
+    }
+    QTextStream in(&quizFile);
+    in.setCodec("UTF-8");
+    QString line;
+    while(in.readLineInto(&line) && line != "")
+    {
+        rawQuiz.push_back(line);
+    }
+    quizFile.close();
+}
+
+QString Connection::ParseQuizTitle()
+{
+    return rawQuiz[0];
+}
+
+vector<vector<QString>> Connection::ParseQuizQuestions()
+{
+    vector<vector<QString>> quizQuestions;
+    vector<QString> currentQuestion;
+    for(int i = 1; i < static_cast<int>(rawQuiz.size()-2); i+=6)
+    {
+        for(int j = 0; j < 6; j++)
+        {
+            currentQuestion.push_back(rawQuiz[static_cast<unsigned long long int>(i+j)]);
+        }
+        quizQuestions.push_back(currentQuestion);
+        currentQuestion.clear();
+    }
+    return quizQuestions;
+}
+
+void Connection::SetUpLoadedQuiz()
+{
+    ReadDataFromLocalFile();
+    currentQuiz->SetTitle(ParseQuizTitle());
+    currentQuiz->SetQuestions(ParseQuizQuestions());
+}
+
+void Connection::CreateAppDefaultQuiz()
 {
     QString localTestQuizTitle = "Test Quiz";
     vector<vector<QString>> localTestQuizQuestions =
